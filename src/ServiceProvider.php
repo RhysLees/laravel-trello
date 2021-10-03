@@ -26,8 +26,11 @@ class ServiceProvider extends LaravelServiceProvider
 
     public function register()
     {
-        $this->app->singleton(LaravelTrello::class, function(){
-            return new LaravelTrello();
+        $this->app->singleton(TrelloCard::class, function(){
+            return new TrelloCard();
+        });
+        $this->app->singleton(TrelloList::class, function(){
+            return new TrelloList();
         });
     }
 
