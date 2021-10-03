@@ -8,7 +8,6 @@
             "email": "43909932+RhysLees@users.noreply.github.com"
         }
     ],
-    "require": {},
     "autoload": {
         "psr-4": {
             "RhysLees\\LaravelTrello\\": "src/"
@@ -20,5 +19,13 @@
                 "RhysLees\\LaravelTrello\\ServiceProvider"
             ]
         }
-    }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.21"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
 }
