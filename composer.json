@@ -1,0 +1,24 @@
+{
+    "name": "rhyslees/laravel-trello",
+    "description": "Trello integration for Laravel 8",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rhys Lees",
+            "email": "43909932+RhysLees@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "RhysLees\\LaravelTrello\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RhysLees\\LaravelTrello\\ServiceProvider"
+            ]
+        }
+    }
+}
