@@ -12,15 +12,6 @@ class ServiceProvider extends LaravelServiceProvider
         $this->publishes([
             __DIR__.'/../config/laravel-trello.php' => config_path('laravel-trello.php'),
         ]);
-
-        \Illuminate\Support\Collection::macro('recursive', function () {
-            return $this->map(function ($value) {
-                if (is_array($value) || is_object($value)) {
-                    return collect($value)->recursive();
-                }
-                return $value;
-            });
-        });
     }
 
 
