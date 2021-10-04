@@ -6,34 +6,34 @@ use DateTime;
 use Illuminate\Support\Arr;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Config;
-use RhysLees\LaravelTrello\TrelloList;
+use RhysLees\LaravelTrello\TrelloChecklist;
 
-class TrelloListTest extends TestCase
+class TrelloChecklistTest extends TestCase
 {
-    /** @var \RhysLees\LaravelTrello\TrelloList */
-    protected $trellolist;
+    /** @var \RhysLees\LaravelTrello\TrelloChecklist */
+    protected $trellochecklist;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->trellolist = new TrelloList();
+        $this->trellochecklist = new TrelloChecklist();
     }
 
      /** @test */
-     public function it_can_set_the_id_board()
+     public function it_can_set_the_id_card()
      {
-         $this->trellolist->idBoard('');
+         $this->trellochecklist->idCard('');
 
-         $this->assertEquals('', Arr::get( $this->trellolist->toArray(), 'idBoard'));
+         $this->assertEquals('', Arr::get( $this->trellochecklist->toArray(), 'idCard'));
      }
 
     /** @test */
     public function it_can_set_the_name()
     {
-        $this->trellolist->name('ListName');
+        $this->trellochecklist->name('ChecklistName');
 
-        $this->assertEquals('ListName', Arr::get( $this->trellolist->toArray(), 'name'));
+        $this->assertEquals('ChecklistName', Arr::get( $this->trellochecklist->toArray(), 'name'));
     }
 
     /** @test */
@@ -42,12 +42,12 @@ class TrelloListTest extends TestCase
         Config::set('laravel-trello.auth.key',   '');
         Config::set('laravel-trello.auth.token',  '');
 
-        $this->trellolist
-            ->name('ListName')
-            ->idBoard('')
+        $this->trellochecklist
+            ->name('ChecklistName')
+            ->idCard('')
             ->create();
 
-            $this->assertNotNull(Arr::get( $this->trellolist->toArray(), 'idBoard'));
+            $this->assertNotNull(Arr::get( $this->trellochecklist->toArray(), 'idCard'));
     }
 
 
@@ -57,10 +57,10 @@ class TrelloListTest extends TestCase
         Config::set('laravel-trello.auth.key',   '');
         Config::set('laravel-trello.auth.token', '');
 
-        $list =  new TrelloList;
+        $list =  new trellochecklist;
 
-        $list->name('ListName')
-            ->idBoard('')
+        $list->name('ChecklistName')
+            ->idCard('')
             ->create();
 
         $deleted = $list->delete();

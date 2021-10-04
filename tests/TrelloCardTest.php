@@ -25,9 +25,9 @@ class TrelloCardTest extends TestCase
     /** @test */
     public function it_can_set_the_id_list()
     {
-        $this->trellocard->idList('6159d7538f756f0a2287ab2b');
+        $this->trellocard->idList('');
 
-        $this->assertEquals('6159d7538f756f0a2287ab2b', Arr::get( $this->trellocard->toArray(), 'idList'));
+        $this->assertEquals('', Arr::get( $this->trellocard->toArray(), 'idList'));
     }
 
     /** @test */

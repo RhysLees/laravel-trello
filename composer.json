@@ -13,6 +13,11 @@
             "RhysLees\\LaravelTrello\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "RhysLees\\LaravelTrello\\Tests\\": "tests"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -20,12 +25,18 @@
             ]
         }
     },
+    "require": {
+        "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
     "require-dev": {
-        "orchestra/testbench": "^6.21"
+        "orchestra/testbench": "^6.21",
+        "phpunit/phpunit": "^8.0"
     },
     "scripts": {
         "post-autoload-dump": [
             "@php ./vendor/bin/testbench package:discover --ansi"
-        ]
+        ],
+        "test": "vendor/bin/phpunit"
     }
 }

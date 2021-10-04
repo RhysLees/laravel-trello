@@ -5,13 +5,13 @@ namespace RhysLees\LaravelTrello;
 use Illuminate\Support\Facades\Http;
 use RhysLees\LaravelTrello\Exceptions\CouldNotSendToTrello;
 
-class TrelloList
+class TrelloChecklist
 {
         /** @var string */
         protected $id;
 
         /** @var string|null */
-        protected $idBoard;
+        protected $idCard;
 
         /** @var string */
         protected $name;
@@ -31,15 +31,15 @@ class TrelloList
         }
 
         /**
-         * Set the board id.
+         * Set the card id.
          *
-         * @param $idBoard
+         * @param $idCard
          *
          * @return $this
          */
-        public function idBoard($idBoard)
+        public function idCard($idCard)
         {
-            $this->idBoard = $idBoard;
+            $this->idCard = $idCard;
 
             return $this;
         }
@@ -65,7 +65,7 @@ class TrelloList
         {
             return [
                 'id' => $this->id,
-                'idBoard' => $this->idBoard,
+                'idCard' => $this->idCard,
                 'name' => $this->name,
             ];
         }
@@ -80,7 +80,7 @@ class TrelloList
             //Set credentials
             $creds = '?key=' . config('laravel-trello.auth.key') . '&token=' . config('laravel-trello.auth.token');
 
-            $url = 'https://api.trello.com/1/lists/' . $creds;
+            $url = 'https://api.trello.com/1/checklists/' . $creds;
 
             $query = $this->toArray();
 
@@ -97,13 +97,15 @@ class TrelloList
             $res = json_decode($response->body(), TRUE);
 
             $this->id = $res['id'];
-            $this->idBoard = $res['idBoard'];
+            $this->idCard = $res['idCard'];
 
             return $this;
         }
 
         /**
          * Update the trello list
+         *
+         * @param string $idCard
          *
          * @return $this
         */
@@ -115,7 +117,6 @@ class TrelloList
             $url = 'https://api.trello.com/1/lists/' . $this->idList . $creds;
 
             $query = $this->toArray();
-
 
             //Get Lists or List
             $response = Http::withOptions([
@@ -129,7 +130,7 @@ class TrelloList
             //Collect response
             $res = json_decode($response->body(), TRUE);
 
-            $this->idBoard = $res['idBoard'];
+            $this->idCard = $res['idCard'];
 
             return $this;
         }
